@@ -1,0 +1,487 @@
+<!--
+	click sound credits to: http://www.freesfx.co.ukhttp://www.freesfx.co.uk
+	-->
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	
+	
+	<title>Великий Шелковый путь</title>
+</head>
+<body>
+	
+	<audio id="clickSound" src="sources/mouse_click.mp3" preload="auto"></audio>
+	
+	
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px;" background-color="white">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+
+			<a class="navbar-brand" href="https://en.wikipedia.org/wiki/Silk_Road"><img id="logo" alt="KCell" src="img/kz_flag_icon.png" style="max-height:100px;max-width:300px;"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar" style="float: right;"> 
+			<ul class="nav navbar-nav">
+				<li><img id="main_page" src="img/house_icon.jpg" style="max-height:50px;max-width:300px; float: right;" onclick= "jumpToDescription()"></li>
+				<li><img id="map" src="img/globe.jpg" style="max-height:50px;max-width:300px; float: right;" onclick= "jumpToMap()"></li>
+				
+				
+				
+				
+				
+				
+				
+				
+				<li>
+				<div class="dropdown" style = "max-height:50px;max-width:300px; padding-left: 25px">
+					<img src = "sources/settings_icon.jpg" style="max-height:50px;max-width:300px;">
+						<div class="dropdown-content">
+							<br>
+						<label><font size="2" > Звуки  </font></label>
+						<input type="checkbox" id="sound_setting" name="sound_seting" value="Sound" onclick="turnOnAndOffSound()" checked><label></label><br>						
+					</div>
+				</div>
+				</li>
+
+
+
+				<li>
+				<div class="dropdown" style = "max-height:50px;max-width:300px; padding-left: 25px">
+					<button class="dropbtn language_button" style = "max-height:50px;max-width:300px;">Язык</button>
+					<div class="dropdown-content">
+						<a href="index_kz.html">ҚАЗ</a><br>
+						<a href="index_ru.html">РУС</a><br>
+						<a href="index.html">ENG</a>						
+					</div><
+				</div>
+				</li>
+
+
+
+
+
+
+
+
+
+
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+
+
+	<header class="cd-header">
+		<h1 id="head1">Великий Шелковый путь</h1>
+	</header>
+	
+	
+	
+
+	<main class="cd-main-content">
+		<div class="cd-tab-filter-wrapper">
+			<div class="cd-tab-filter">
+				<ul class="cd-filters">
+					<li class="placeholder"> 
+						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+					</li> 
+					<!--<li class="filter"><a class="selected" href="#0" data-type="all">Все эпохи</a></li> -->
+					<li class="filter" data-filter=".period-1"><a href="#0" class = "selected" data-type="color-1" onclick="filterPeriods('period1')">Все эпохи</a></li>
+					<li class="filter" data-filter=".period-2"><a href="#0" data-type="color-1" onclick="filterPeriods('period2')">VI-XIII вв н.э.</a></li>
+					<li class="filter" data-filter=".period-3"><a href="#0" data-type="color-2" onclick="filterPeriods('period3')">XIII-XV вв н.э.</a></li>
+				</ul> <!-- cd-filters -->
+			</div> <!-- cd-tab-filter -->
+		</div> <!-- cd-tab-filter-wrapper -->
+
+		<section class="cd-gallery">
+			<ul>
+				
+				<div id="googleMap" style = "height: 400px; width: 900px; border-radius: 8px;">
+				</div>					
+				<div id="marker" style="width:500px; height: 50px;">
+				</div>
+
+				<li class="gap"></li>
+				<li class="gap"></li>
+				<li class="gap"></li>
+				<li class="gap"></li>
+				<li class="gap"></li>
+				
+				
+				<!-- Description of a city goes here -->
+				<div id="city_info" class="city_info">
+					<li class="gap"></li><li class="gap"></li>
+					<h1 id="cityNameHeading"></h1>
+					
+					<li class="gap"></li>
+				<li class="gap"></li>
+					
+					<li><img id="image1" class = "cityImage" width="100" height="300"></li>
+					<li><img id="image2" class = "cityImage" width="100" height="300"></li>
+					
+					
+					<li class="gap"></li>
+					<li class="gap"></li>
+					<li class="gap"></li>
+					
+					<div id = "description"  style = "clear: left; "></div>	
+				</div>
+					
+				
+
+				<li class="gap"></li>
+				<li class="gap"></li>
+				<li class="gap"></li>
+			</ul>
+			<div class="cd-fail-message"></div>
+		</section> <!-- cd-gallery -->
+
+		<div class="cd-filter">
+			<form>
+				<div class="search">
+					<h4>Search</h4>
+					
+						<input type="text" id = "search" placeholder="">
+					
+				</div> <!-- cd-filter-block -->
+
+				<div class="cities">
+					<h4>List</h4>
+
+					<ul class="list" id = "list-of-cities">
+						<li></li>
+					</ul> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+				
+			</form>
+
+			<a href="#0" class="cd-close">Закрыть</a>
+		</div> <!-- cd-filter -->
+
+		<a href="#0" class="cd-filter-trigger">Фильтры</a>
+	</main> <!-- cd-main-content -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/jquery.mixitup.min.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+<script src="js/modernizr.js"></script> <!-- Modernizr -->
+  	<script src="js/list.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>  <!-- Google Maps API-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script> <!-- Search filtering helping tool -->
+
+
+<script>
+	
+	var options = {
+  valueNames: [ 'city-name' ]
+};
+
+var userList = new List('cities', options);
+
+	
+</script>
+
+
+
+<script>
+	var reader = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
+
+
+function turnOnAndOffSound(){
+	if(document.getElementById('sound_setting').checked) {
+    document.getElementById("clickSound").muted = false;
+} else {
+     document.getElementById("clickSound").muted = true;}
+}
+
+function playSoundOnClick(){
+	document.getElementById('clickSound').play();
+}
+
+
+function loadFile(cityIndex) {
+	playSoundOnClick();
+
+	var listOfCitiesNodeList = document.getElementById("list-of-cities").getElementsByTagName("li");	
+	var listOfCities = [];
+	var arrayOfCitiesLowerCase = [];
+	
+	var cityName = "";
+	var fileName = "";
+	var j;
+	var i;
+	
+	//convert node list to array
+	for (j = 0; node = listOfCitiesNodeList[j]; ++j){
+		listOfCities.push(node);
+	}
+	
+	//Uppercase names of cities convert to lower case
+	for (j=0; j < listOfCities.length; j++){
+		arrayOfCitiesLowerCase[j] = listOfCities[j].innerHTML.toLowerCase();
+		
+	}	
+	console.log(cityIndex);
+	console.log(cityName);
+	cityName = arrayOfCitiesLowerCase[cityIndex];
+	document.getElementById("cityNameHeading").innerHTML = cityName.toUpperCase();
+	//hardcoded translation. Need to be changed by adding the file with english city names
+	if (cityName == "кулан"){
+		cityName = "kulan";
+	} else if (cityName == "баласагун"){
+		cityName = "balasagun";
+	} else if (cityName == "дженд"){
+		cityName = "dzhend";
+	}
+	
+	
+	
+	var fileName = "sources/" + cityName + "_info" + ".txt";
+	
+	//retrieve city info from files
+    reader.open('get', fileName, true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+    
+    //load images of a city
+	for (i=0; i < 2; i++){
+		loadImages(cityName, i+1);
+	}
+	
+	
+	if (!isFirstTimeLoaded){
+	//after info image was clicked scroll down to the description section
+    jumpToDescription();
+    }
+	
+}
+
+function jumpToMap(){
+	playSoundOnClick();
+	$('html,body').animate({
+        scrollTop: $("#googleMap").offset().top - '30px'},
+        'slow');
+}
+
+
+function jumpToDescription(){
+	playSoundOnClick();
+	$('html,body').animate({
+        scrollTop: $("#city_info").offset().top},
+        'slow');
+}
+
+function displayContents() {
+    if(reader.readyState==4) {
+	    
+	    var existingDescription = document.getElementById("description");
+	   
+	    var descriptionDiv = document.createElement("div");
+	    descriptionDiv.id = "description";
+	    descriptionDiv.innerHTML = reader.responseText;
+	   
+	    var parentDiv = document.getElementById("city_info");
+	    parentDiv.replaceChild(descriptionDiv, existingDescription);
+	    
+        }
+}
+
+
+function loadImages(cityName, imageNumber){
+	var imageParent = document.getElementById("city_info");
+	
+	var existingImage;
+	if (imageNumber == 1){
+		existingImage = document.getElementById("image1");
+		}
+	else if (imageNumber == 2){
+		existingImage = document.getElementById("image2");
+	}
+	
+	
+	
+	var image = document.createElement("img");
+	var gap = document.createElement("li");
+	gap.class = "gap";
+	image.id = existingImage.id;
+	image.class = "cityImage";
+	image.style.paddingLeft = "30px";
+	image.style.paddingRight = "30px";
+	image.style.paddingBottom = "30px";
+
+	
+	image.src = "sources/" + cityName + imageNumber + ".jpg";
+	
+	existingImage.remove();
+	imageParent.appendChild(gap);
+	imageParent.appendChild(image, existingImage);	
+}
+
+
+function filterPeriods(periodName){
+	playSoundOnClick();
+	
+	var period2_cities = ["Кулан"];
+	var period3_cities = ["Баласагун", "Дженд"];
+	var period1_cities = [""];
+	period1_cities = period2_cities.concat(period3_cities);
+	
+	var i;
+
+	var ul = document.getElementById('list-of-cities');
+	if (ul) {
+    while (ul.firstChild) {
+      ul.removeChild(ul.firstChild);
+      }
+    }
+	
+	if (periodName == "period1"){
+		for(i=0; i < period1_cities.length; i++){
+			initialize(period1_cities);
+			document.getElementById("list-of-cities").innerHTML += '<li id="list-of-cities-element" onclick="loadFile(' + i +')">' + period1_cities[i] + '</li>';
+			var listOfCitiesNodeList = document.getElementById("list-of-cities").getElementsByTagName("li");
+			listOfCitiesNodeList[0].class = "active";
+		}
+	}else if (periodName == "period2"){
+		for(i=0; i < period2_cities.length; i++){
+			initialize(period2_cities);
+			document.getElementById("list-of-cities").innerHTML += '<li id="list-of-cities-element" onclick="loadFile(' + i +')">' + period2_cities[i] + '</li>';
+		}
+	}else{
+		for(i=0; i < period3_cities.length; i++){
+			initialize(period3_cities);
+			document.getElementById("list-of-cities").innerHTML += '<li id="list-of-cities-element" onclick="loadFile(' + i +')">' + period3_cities[i] + '</li>';
+		}
+	}
+	
+}
+
+
+
+function initialize(citiesArr) {
+	
+	var k;
+	var marker;
+	var infoWindow;
+	//var citiesArr = ["Кулан", "Баласагун", "Джент"];
+	var latCoordinatesArr;
+	var lngCoordinatesArr;
+	
+	var pathCoordinates;
+	
+	if (citiesArr.length == 3){
+		latCoordinatesArr = [42.5437, 42.4447, 44.3302];
+		lngCoordinatesArr = [72.4221, 75.1501, 64.0508];
+		
+		pathCoordinates = [{lat: 42.5437, lng: 72.4221}, {lat: 42.4447, lng: 75.1501}, {lat: 44.3302, lng: 64.0508}];
+
+	}else if(citiesArr.length == 2){
+		latCoordinatesArr = [42.4447, 44.3302];
+		lngCoordinatesArr = [75.1501, 64.0508];
+		
+		pathCoordinates = [{lat: 42.4447, lng: 75.1501}, {lat: 44.3302, lng: 64.0508}];
+	}else if(citiesArr.length == 1){
+		latCoordinatesArr = [42.5437];
+		lngCoordinatesArr = [72.4221];
+		
+		pathCoordinates = [{lat: 42.5437, lng: 72.4221}];
+	}
+
+		
+		
+	
+	//var coordinates = [{city: "Кулан", lat: 42.5437, lng: 72.4221},
+	//				   {city: "Баласагун", lat: 42.4447, lng: 75.1501},
+	//				   {city: "Джент", lat: 44.3302, lng: 64.0508}];
+	
+
+	var city = new google.maps.LatLng(latCoordinatesArr[0], lngCoordinatesArr[0]);
+	
+	var mapProp = {
+		center:city,
+		zoom:5,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+  	};
+  	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  	
+  	
+  	 var path = new google.maps.Polyline({
+          path: pathCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        path.setMap(map);
+
+  	for (k=0; k < citiesArr.length; k++){
+	  	city = new google.maps.LatLng(latCoordinatesArr[k], lngCoordinatesArr[k]);
+	  	
+	  	marker = new google.maps.Marker({
+			position: city,
+			});
+		marker.setMap(map);
+	
+	
+		marker.info = new google.maps.InfoWindow({
+			content: '<p>'+ citiesArr[k] +'' + '<input type="image" id="infoImage" style="height:20px;width:20px;" onclick="loadFile(' + k +');" src="img/button-info-icon.png" />'
+		});
+		
+		
+		google.maps.event.addListener(marker, 'click', function() {
+			var marker_map = this.getMap();
+				
+            this.info.open(marker_map, this);
+            });
+		}     
+	}
+
+
+var isFirstTimeLoaded = true;
+
+
+filterPeriods('period1');
+loadFile(0);
+isFirstTimeLoaded = false;
+
+
+var $rows = $('#list-of-cities li');
+	console.log((document.getElementById("list-of-cities")));
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
